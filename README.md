@@ -56,10 +56,51 @@ This is a calendar application that allows users to view a calendar, manage even
 
 ### Prerequisites
 - Node.js
-- npm or yarn
+- npm 
 
 ### Steps to Install
 
 1. Clone the repository:
    ```bash
    git clone https://github.com/yourusername/calendar-app.git
+2. Navigate to the project directory:
+   ```bash
+   cd MyCalendar
+3. Install the dependencies:
+   ```bash
+   npm install
+4. Add Tailwind and its configuration
+   ```bash
+   npm install -D tailwindcss postcss autoprefixer
+   npx tailwindcss init -p
+5. Update vite.config.ts
+    ```bash
+    npm install -D @types/node
+6. Run the CLI
+   ```bash
+   npx shadcn@latest init
+7. Configure components.json
+   ```bash
+   Which style would you like to use? › New York
+   Which color would you like to use as base color? › Normal
+   Do you want to use CSS variables for colors? › no / yes
+6. Now have to add components 
+    ```bash
+    npx shadcn@latest add button
+    npx shadcn@latest add card
+    npx shadcn@latest add input
+    npx shadcn@latest add textarea
+    npx shadcn@latest add dialog
+---
+## Deployment
+
+The app is deployed on [Netlify](https://www.netlify.com). You can visit the deployed app here:
+
+
+- [Netlify Deployment Link](https://mycalendar-events.netlify.app/)
+
+
+
+
+   
+
