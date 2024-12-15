@@ -14,7 +14,7 @@ const EventsCard = ({ event, index, handleDeleteEvent, handleEditEvent }) => {
         }}
       >
         <CardHeader>
-          <h2 className="text-xl font-semibold text-indigo-600">
+          <h2 className="text-xl font-semibold text-indigo-600 uppercase">
             {event.name}
           </h2>
         </CardHeader>

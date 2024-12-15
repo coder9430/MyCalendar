@@ -76,7 +76,16 @@ const EventsPage = () => {
     );
   };
 
+  const isValidTimeRange = (startTime, endTime) => {
+    return startTime < endTime;
+  };
+
   const handleAddOrEditEvent = () => {
+    if (!isValidTimeRange(newEvent.startTime, newEvent.endTime)) {
+      alert("Invalid time range. Start time must be earlier than end time.");
+      return;
+    }
+
     if (checkEventOverlap(newEvent.startTime, newEvent.endTime, newEvent.id)) {
       alert(
         "This event overlaps with an existing event. Please choose a different time."
@@ -146,7 +155,7 @@ const EventsPage = () => {
   });
 
   return (
-    <div className="min-h-screen bg-gradient-to-r from-purple-600 via-indigo-500 to-blue-600 text-white p-6 w-screen">
+    <div className="min-h-screen bg-white text-black p-6 w-screen">
       <header className="flex justify-between items-start mb-6">
         <Button
           variant="ghost"
@@ -157,15 +166,17 @@ const EventsPage = () => {
         </Button>
       </header>
       <header className="flex justify-center items-center mb-6">
-        <h1 className="text-3xl font-bold">Events for {date}</h1>
+      <h1 className="text-5xl font-serif font-bold text-gray-800 tracking-wide">
+        EVENTS FOR {date}
+        </h1>
       </header>
 
-      <div className="mb-6 max-w-md mx-auto text-white">
+      <div className="mb-6 max-w-md mx-auto text-black">
         <Input
           placeholder="Search events"
           value={searchKeyword}
           onChange={(e) => setSearchKeyword(e.target.value)}
-          className="w-full p-4 rounded-lg shadow-lg focus:outline-none focus:ring-2 focus:ring-indigo-400 text-white"
+          className="w-full p-4 rounded-lg shadow-lg focus:outline-none focus:ring-2 focus:ring-indigo-400 text-black"
         />
       </div>
 
@@ -218,16 +229,18 @@ const EventsPage = () => {
                   name="startTime"
                   value={newEvent.startTime}
                   onChange={handleInputChange}
+                  placeholder="Start Time"
                   required
-                  className="p-3 rounded-lg shadow-lg w-full"
+                  className="w-1/2 p-3 rounded-lg shadow-lg"
                 />
                 <Input
                   type="time"
                   name="endTime"
                   value={newEvent.endTime}
                   onChange={handleInputChange}
+                  placeholder="End Time"
                   required
-                  className="p-3 rounded-lg shadow-lg w-full"
+                  className="w-1/2 p-3 rounded-lg shadow-lg"
                 />
               </div>
               <Textarea
@@ -235,23 +248,24 @@ const EventsPage = () => {
                 value={newEvent.description}
                 onChange={handleInputChange}
                 placeholder="Event Description"
-                rows={4}
+                
                 className="w-full p-3 rounded-lg shadow-lg"
               />
               <DialogFooter>
                 <Button
-                  type="submit"
-                  variant="primary"
-                  className="bg-blue-500 text-white rounded-lg hover:bg-blue-600"
-                >
-                  {newEvent.editIndex !== null ? "Save Changes" : "Add Event"}
-                </Button>
-                <Button
-                  variant="secondary"
+                  type="button"
+                  variant="ghost"
                   onClick={() => setShowDialog(false)}
-                  className="ml-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600"
+                  className="rounded-lg px-4 py-2"
                 >
                   Cancel
+                </Button>
+                <Button
+                  type="submit"
+                  variant="primary"
+                  className="bg-green-500 text-white rounded-lg px-6 py-2 shadow-md hover:bg-green-600"
+                >
+                  {newEvent.editIndex !== null ? "Update" : "Add"}
                 </Button>
               </DialogFooter>
             </form>
@@ -263,3 +277,4 @@ const EventsPage = () => {
 };
 
 export default EventsPage;
+
