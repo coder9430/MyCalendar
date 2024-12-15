@@ -1,19 +1,17 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-
-import { Button } from './components/ui/button'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import CalendarHome from './Pages/CalendarHome';
+import EventsPage from './Pages/EventsPage';
+// import DatePage from './components/DatePage'; // Create this page
 
 function App() {
-  
-
   return (
-    <>
-      <div className='px-20'>
-       <Button>Hello</Button>
-     </div>
-    </>
-  )
+    <Router>
+      <Routes>
+        <Route path="/" element={<CalendarHome />} />
+        <Route path="/date/:date" element={<EventsPage />} /> 
+      </Routes>
+    </Router>
+  );
 }
 
-export default App
+export default App;
